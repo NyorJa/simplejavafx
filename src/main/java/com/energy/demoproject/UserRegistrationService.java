@@ -2,7 +2,6 @@ package com.energy.demoproject;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
@@ -39,6 +38,10 @@ public class UserRegistrationService {
         }
     }
 
+    /**
+     * File param will be supported in the future, for now default path only
+     * @return
+     */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public List<User> loadUsers() {
         CSVReader reader;
