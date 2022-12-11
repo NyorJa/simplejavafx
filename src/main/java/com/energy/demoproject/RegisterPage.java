@@ -129,28 +129,24 @@ public class RegisterPage {
         }*/
 
         UserRegistrationService userRegistrationService = new UserRegistrationService();
-        try {
-            if (!accountFirstName.isBlank() && !accountLastName.isBlank() && !accountUserName.isBlank() &&
-                    !accountPassword.isBlank()) {
+        if (!accountFirstName.isBlank() && !accountLastName.isBlank() && !accountUserName.isBlank() &&
+                !accountPassword.isBlank()) {
 
-                // check existing username
-                boolean isUserExisting = userRegistrationService.loadUsers().stream().anyMatch(user -> user.getUsername().equals(accountUserName));
-                if (isUserExisting) {
-                    warning.setText("Username " + accountUserName + " is existing");
-                } else {
-                    // saving user
-                    userRegistrationService.save(new User(accountUserName, accountPassword, accountLastName, accountFirstName));
-
-                    // redirect
-                    Application application = new Application();
-                    application.changeScene("loginStyle.fxml");
-                }
-
+            // check existing username
+            boolean isUserExisting = userRegistrationService.loadUsers().stream().anyMatch(user -> user.getUsername().equals(accountUserName));
+            if (isUserExisting) {
+                warning.setText("Username " + accountUserName + " is existing");
             } else {
-                warning.setText("One or more fields are empty.");
+                // saving user
+                userRegistrationService.save(new User(accountUserName, accountPassword, accountLastName, accountFirstName));
+
+                // redirect
+                Application application = new Application();
+                application.changeScene("loginStyle.fxml");
             }
-        } catch (RuntimeException ex) {
-            throw ex;
+
+        } else {
+            warning.setText("One or more fields are empty.");
         }
     }
 
