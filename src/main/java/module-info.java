@@ -1,4 +1,4 @@
-module com.energy.demoproject {
+module demoproject {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
